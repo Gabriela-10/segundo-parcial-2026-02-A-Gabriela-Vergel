@@ -2,19 +2,6 @@ import java.util.Scanner;
 
 public class CentroReciclaje{
 
-    public static void main(String[] args) {
-        int cantidadCargas= cargasMaterial();
-        int[] pesosCargas = pesos(cantidadCargas);
-        int sumaPesos= sumaPesos(pesosCargas);
-        int promedioPesos= promedio(sumaPesos, cantidadCargas);
-
-        System.out.println("el peso total de la jornada es "+sumaPesos);
-        System.out.println("el promedio de los pesos fue "+promedioPesos);
-        mayor80(pesosCargas, cantidadCargas);
-        mayor(pesosCargas);
-
-    }
-
     public static int cargasMaterial(){
         Scanner scanner =new Scanner(System.in);
 
@@ -87,6 +74,43 @@ public class CentroReciclaje{
             }
         }
         System.out.println("la cantidad de pedidos mayores al promedio son "+contador);
+    }
+    
+    public static void posicionMayor(int[] pesos){
+        int largo= pesos.length;
+        int mayor=0;
+        int posicionMayor=0;
+        for (int i =0; i<largo; i++){
+            if (pesos[i]>mayor){
+                mayor=pesos[i];
+                posicionMayor=i;
+            }
+        }
+
+        System.out.println("El mayor peso apareció por primera vez en la carga "+(posicionMayor+1));
+    }
+
+    public static void mostrarPesos(int[] pesos){
+        int largo=pesos.length;
+        for (int i=0; i<largo; i++){
+            System.out.println("la carga "+(i+1)+" tiene el peso "+pesos[i]+"kg");
+        }
+    }
+
+    public static void main(String[] args) {
+        int cantidadCargas= cargasMaterial();
+        int[] pesosCargas = pesos(cantidadCargas);
+        int sumaPesos= sumaPesos(pesosCargas);
+        int promedioPesos= promedio(sumaPesos, cantidadCargas);
+
+        System.out.println("el peso total de la jornada es "+sumaPesos);
+        System.out.println("el promedio de los pesos fue "+promedioPesos);
+        mayor80(pesosCargas, cantidadCargas);
+        mayor(pesosCargas);
+        mayorePromedio(pesosCargas, promedioPesos);
+        posicionMayor(pesosCargas);
+        mostrarPesos(pesosCargas);
+        
     }
 
 
